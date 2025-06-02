@@ -1,22 +1,50 @@
-# 🔒 Keystore e propriedades de assinatura
+# 🔒 Arquivos sensíveis (NUNCA versionar)
 android/key.properties
 android/app/shopgp3-release-key.jks
 
-# Flutter build outputs
-/build/
+# Flutter / Dart
 .dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
+.packages
 .pub-cache/
 .pub/
+build/
+flutter_*.png
 
-# iOS build outputs
-ios/Flutter/.last_build_id
-
-# VSCode & IntelliJ
-.idea/
-*.iml
+# VSCode
 .vscode/
 
-# macOS/Linux/Misc
+# IntelliJ / Android Studio
+.idea/
+*.iml
+
+# macOS
 .DS_Store
+
+# Linux / Unix / Misc
+*.swp
+*.log
+*.pyc
+*.class
+.svn/
+.history
+.atom/
+.buildlog/
+.swiftpm/
+migrate_working_dir/
+
+# iOS
+ios/Flutter/.last_build_id
+
+# Web
+web/manifest.json
+
+# Arquivos de build (Android)
+android/app/debug/
+android/app/profile/
+android/app/release/
+*.symbols
+*.map.json
+
+# Arquivos temporários
+*.tmp
+*.temp
