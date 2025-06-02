@@ -1,16 +1,21 @@
 workflows:
-  build_android:
-    name: Build Android APK Only
+  build_shopgp3:
+    name: ShopGP3 App Build
     max_build_duration: 60
     environment:
       flutter: stable
+      xcode: latest
+      cocoapods: default
     scripts:
       - name: Install dependencies
         script: flutter pub get
-      - name: Build release APK
-        script: flutter build apk --release
+      - name: Build Android AAB
+        script: flutter build appbundle --release
+      - name: Build iOS (sem assinatura automática)
+        script: flutter build ios --release --no-codesign
     artifacts:
-      - build/app/outputs/flutter-apk/app-release.apk
+      - build/app/outputs/bundle/release/app-release.aab
+      - build/ios/iphoneos/Runner.app
     publishing:
       email:
         recipients:
