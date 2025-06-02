@@ -1,0 +1,31 @@
+workflows:
+  build_shopgp3:
+    name: Build ShopGP3 App
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+      vars:
+        BUNDLE_ID: "com.shopgp3.app"
+      groups:
+        - app_store_credentials
+        - keystore_credentials
+    scripts:
+      - name: 📦 Get dependencies
+        script: flutter pub get
+
+      - name: 🧪 Run tests (opcional)
+        script: flutter test
+
+      - name: 📱 Build Android APK
+        script: flutter build apk --release
+
+      - name: 🍏 Build iOS (IPA)
+        script: |
+          flutter build ios --release \
+            --no-codesign
+
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+      - build/ios/ipa/*.ipa
+
