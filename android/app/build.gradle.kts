@@ -1,4 +1,3 @@
-import java.io.FileInputStream
 import java.util.Properties
 
 plugins {
@@ -7,17 +6,17 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// ✅ Carrega os dados da keystore
+// ✅ Carrega o arquivo key.properties
 val keystoreProperties = Properties()
 val keystorePropertiesFile = rootProject.file("key.properties")
 if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+    keystoreProperties.load(keystorePropertiesFile.inputStream())
 }
 
 android {
     namespace = "com.example.shopgp3_flutter_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "27.0.12077973"
+    ndkVersion = "27.0.12077973" // 🔧 necessário para webview_flutter
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
