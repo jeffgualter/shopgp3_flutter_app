@@ -4,11 +4,10 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    // O plugin do Flutter deve vir após os plugins de Android e Kotlin
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// Carrega a keystore se o arquivo existir
+// ✅ Carrega os dados da keystore
 val keystoreProperties = Properties()
 val keystorePropertiesFile = rootProject.file("key.properties")
 if (keystorePropertiesFile.exists()) {
@@ -18,7 +17,7 @@ if (keystorePropertiesFile.exists()) {
 android {
     namespace = "com.example.shopgp3_flutter_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -47,7 +46,7 @@ android {
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = true
             isShrinkResources = true
             signingConfig = signingConfigs.getByName("release")
