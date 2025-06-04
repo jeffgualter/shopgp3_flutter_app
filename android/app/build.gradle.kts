@@ -7,11 +7,12 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// ✅ Carrega o arquivo key.properties de forma segura
-val keystoreProperties = Properties()
-val keystorePropertiesFile = rootProject.file("key.properties")
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+// ✅ Carrega as propriedades da keystore
+val keystoreProperties = Properties().apply {
+    val keystoreFile = rootProject.file("android/key.properties")
+    if (keystoreFile.exists()) {
+        load(FileInputStream(keystoreFile))
+    }
 }
 
 android {
@@ -38,7 +39,7 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = file(keystoreProperties["storeFile"] as String)
+            storeFile = file("android/app/shopgp3-release-key.jks")
             storePassword = keystoreProperties["storePassword"] as String
             keyAlias = keystoreProperties["keyAlias"] as String
             keyPassword = keystoreProperties["keyPassword"] as String
