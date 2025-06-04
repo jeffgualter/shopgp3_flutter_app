@@ -9,7 +9,7 @@ plugins {
 
 // ✅ Carrega as propriedades da keystore
 val keystoreProperties = Properties().apply {
-    val keystoreFile = rootProject.file("android/key.properties")
+    val keystoreFile = rootProject.file("shopgp3-release-key.jks")
     if (keystoreFile.exists()) {
         load(FileInputStream(keystoreFile))
     }
