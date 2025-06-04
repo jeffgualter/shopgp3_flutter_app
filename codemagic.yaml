@@ -9,7 +9,6 @@ workflows:
       vars:
         KEYSTORE_PATH: android/app/shopgp3-release-key.jks
         KEY_PROPERTIES_PATH: android/key.properties
-
     scripts:
       - name: Install dependencies
         script: flutter pub get
@@ -21,7 +20,7 @@ workflows:
           echo "keyAlias=${KEY_ALIAS}" >> $KEY_PROPERTIES_PATH
           echo "keyPassword=${KEY_PASSWORD}" >> $KEY_PROPERTIES_PATH
 
-      - name: Build Android AAB (com memória aumentada)
+      - name: Build Android AAB (modo release com memória aumentada)
         script: |
           export JAVA_TOOL_OPTIONS="-Xmx6144M"
           flutter build appbundle --release
