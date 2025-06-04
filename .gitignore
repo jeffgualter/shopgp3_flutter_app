@@ -2,29 +2,39 @@
 android/key.properties
 android/app/shopgp3-release-key.jks
 
-# Flutter / Dart
+# 📦 Diretórios de build/cache do Flutter e Dart
 .dart_tool/
 .packages
-.pub-cache/
 .pub/
+.pub-cache/
 build/
-flutter_*.png
 
-# VSCode
-.vscode/
+# 📂 Diretórios de compilação específicos do Android
+android/app/debug/
+android/app/profile/
+android/app/release/
 
-# IntelliJ / Android Studio
-.idea/
+# 🔧 Arquivos específicos de build
 *.iml
+*.tmp
+*.temp
+*.log
+*.class
+*.pyc
+*.swp
+*.symbols
+*.map.json
 
-# macOS
+# 🔧 IDEs e editores
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# 🍏 macOS
 .DS_Store
 
-# Linux / Unix / Misc
-*.swp
-*.log
-*.pyc
-*.class
+# 🐧 Linux/Misc
 .svn/
 .history
 .atom/
@@ -32,19 +42,9 @@ flutter_*.png
 .swiftpm/
 migrate_working_dir/
 
-# iOS
+# 📱 iOS específico
 ios/Flutter/.last_build_id
 
-# Web
+# 🌐 Web (ignorar manifest se for gerado dinamicamente)
+# Se o manifest for editado manualmente, remova esta linha
 web/manifest.json
-
-# Arquivos de build (Android)
-android/app/debug/
-android/app/profile/
-android/app/release/
-*.symbols
-*.map.json
-
-# Arquivos temporários
-*.tmp
-*.temp

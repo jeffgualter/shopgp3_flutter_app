@@ -6,16 +6,30 @@ workflows:
       flutter: stable
       xcode: latest
       cocoapods: default
+      vars:
+        KEYSTORE_PATH: android/app/shopgp3-release-key.jks
+        KEY_PROPERTIES_PATH: android/key.properties
     scripts:
       - name: Install dependencies
         script: flutter pub get
+
+      - name: Setup key.properties
+        script: |
+          echo "storeFile=${KEYSTORE_PATH}" > $KEY_PROPERTIES_PATH
+          echo "storePassword=${STORE_PASSWORD}" >> $KEY_PROPERTIES_PATH
+          echo "keyAlias=${KEY_ALIAS}" >> $KEY_PROPERTIES_PATH
+          echo "keyPassword=${KEY_PASSWORD}" >> $KEY_PROPERTIES_PATH
+
       - name: Build Android AAB
         script: flutter build appbundle --release
+
       - name: Build iOS (sem assinatura automática)
         script: flutter build ios --release --no-codesign
+
     artifacts:
       - build/app/outputs/bundle/release/app-release.aab
       - build/ios/iphoneos/Runner.app
+
     publishing:
       email:
         recipients:
