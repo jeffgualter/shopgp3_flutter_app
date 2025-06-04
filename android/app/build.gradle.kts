@@ -9,7 +9,7 @@ plugins {
 
 // ✅ Carrega as propriedades da keystore
 val keystoreProperties = Properties().apply {
-    val keystoreFile = rootProject.file("shopgp3-release-key.jks")
+    val keystoreFile = rootProject.file("android/key.properties")
     if (keystoreFile.exists()) {
         load(FileInputStream(keystoreFile))
     }
@@ -42,7 +42,7 @@ android {
             val storePassword = keystoreProperties["storePassword"]?.toString() ?: ""
             val keyAlias = keystoreProperties["keyAlias"]?.toString() ?: ""
             val keyPassword = keystoreProperties["keyPassword"]?.toString() ?: ""
-            storeFile = file("android/app/shopgp3-release-key.jks")
+            storeFile = file("shopgp3-release-key.jks") // ✅ Corrigido aqui
             this.storePassword = storePassword
             this.keyAlias = keyAlias
             this.keyPassword = keyPassword
