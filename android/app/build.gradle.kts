@@ -6,17 +6,10 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
-// ✅ Carrega o arquivo key.properties
-val keystoreProperties = Properties()
-val keystorePropertiesFile = rootProject.file("key.properties")
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(keystorePropertiesFile.inputStream())
-}
-
 android {
     namespace = "com.example.shopgp3_flutter_app"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "27.0.12077973" // 🔧 necessário para webview_flutter
+    ndkVersion = "27.0.12077973"
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -33,6 +26,14 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+    }
+
+    // ✅ Carrega o arquivo key.properties
+    val keystoreProperties = Properties().apply {
+        val file = rootProject.file("key.properties")
+        if (file.exists()) {
+            load(file.inputStream())
+        }
     }
 
     signingConfigs {
