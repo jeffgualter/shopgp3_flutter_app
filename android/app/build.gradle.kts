@@ -6,6 +6,14 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// ✅ Carrega o key.properties corretamente
+val keystoreProperties = Properties().apply {
+    val file = rootProject.file("key.properties")
+    if (file.exists()) {
+        load(file.inputStream())
+    }
+}
+
 android {
     namespace = "com.example.shopgp3_flutter_app"
     compileSdk = flutter.compileSdkVersion
@@ -28,17 +36,9 @@ android {
         versionName = flutter.versionName
     }
 
-    // ✅ Carrega o arquivo key.properties
-    val keystoreProperties = Properties().apply {
-        val file = rootProject.file("key.properties")
-        if (file.exists()) {
-            load(file.inputStream())
-        }
-    }
-
     signingConfigs {
         create("release") {
-            storeFile = file(keystoreProperties["storeFile"] as String)
+            storeFile = file(keystoreProperties["storeFile"] ?: "")
             storePassword = keystoreProperties["storePassword"] as String
             keyAlias = keystoreProperties["keyAlias"] as String
             keyPassword = keystoreProperties["keyPassword"] as String
@@ -46,7 +46,7 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = true
             isShrinkResources = true
             signingConfig = signingConfigs.getByName("release")
