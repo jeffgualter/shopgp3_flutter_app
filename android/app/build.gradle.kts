@@ -42,7 +42,7 @@ android {
             val storePassword = keystoreProperties["storePassword"]?.toString() ?: ""
             val keyAlias = keystoreProperties["keyAlias"]?.toString() ?: ""
             val keyPassword = keystoreProperties["keyPassword"]?.toString() ?: ""
-            storeFile = file("android/app/shopgp3-release-key.jks") // ✅ Corrigido aqui
+            storeFile = file("shopgp3-release-key.jks")
             this.storePassword = storePassword
             this.keyAlias = keyAlias
             this.keyPassword = keyPassword
